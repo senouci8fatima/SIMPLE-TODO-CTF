@@ -2,48 +2,42 @@ from flask import Flask, render_template, request, redirect, session, render_tem
 
 app = Flask(__name__)
 app.secret_key = "shhh_luffy_secret"
-app.config['AMMMMMM'] = "shellmates{SA7AAAAAAAAAAAAAAAAAAAA}"
 
+# Config-hidden flags
+app.config['FLAG1'] = "CTF{first_part_hidden_in_config_"
+app.config['FLAG2'] = "second_part_hidden_in_config}"
+
+# In-memory todo list
 todos = []
 
-
 @app.route("/", methods=["GET", "POST"])
-def index():
+def login():
     if request.method == "POST":
-        name = request.form.get("name")
-        session["name"] = name
+        username = request.form.get("username")
+        session["user"] = username
         return redirect("/dashboard")
-    return render_template("index.html")
-
+    return render_template("login.html")
 
 @app.route("/dashboard", methods=["GET", "POST"])
 def dashboard():
-    if "name" not in session:
+    if "user" not in session:
         return redirect("/")
 
     if request.method == "POST":
-        title = request.form.get("title")  
+        title = request.form.get("title")  # VULNERABLE
         description = request.form.get("description")
 
+        # Vulnerable SSTI rendering
         rendered_title = render_template_string(title)
         todos.append({"title": rendered_title, "description": description})
 
-    name = session.get("name", "Luffy")
-
-    rendered_welcome = render_template_string("Welcome " + name)
-
-    return render_template("dashboard.html", todos=todos, welcome_message=rendered_welcome)
-
+    return render_template("dashboard.html", todos=todos, user=session["user"], config=app.config)
 
 @app.route("/logout")
 def logout():
     session.clear()
-    todos.clear()  # Reset the todo list
+    todos.clear()
     return redirect("/")
 
-
-import os
-
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))  # Use Render's assigned port or fallback to 5000
-    app.run(host="0.0.0.0", port=port, debug=False)
+    app.run(host="0.0.0.0", port=5000, debug=False)
