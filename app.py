@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, session, render_tem
 
 app = Flask(__name__)
 app.secret_key = "shhh_luffy_secret"
+app.config['AMMMMMM'] = "shellmates{SA7AAAAAAAAAAAAAAAAAAAA}"
 
 todos = []
 
