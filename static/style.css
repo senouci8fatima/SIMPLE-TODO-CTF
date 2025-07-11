@@ -1,0 +1,75 @@
+.login-form{
+    text-align: center;
+    padding-top: 300px;
+}
+body {
+    background-color: #f0f0f0;
+}
+.login-form input{
+padding: 10px;
+width: 15%;
+
+}
+.login-form button
+{
+    margin-top: 10px;
+    width: 13%;
+    padding: 8px;
+    border-radius: 5px;
+}
+.yo
+{
+    text-align: right;
+}
+
+.todo 
+{
+    text-align: center;
+    margin-top: 100px;
+}
+ 
+.wlcm 
+{
+    font-size: 30px;
+    font-weight: bold;
+    color: #5e548e;
+}
+
+.todo input
+{
+width: 22%;
+padding: 10px;
+}
+.todo textarea
+{
+width: 22%;
+margin-top: 10px;
+padding: 10px;
+}
+
+.todo button
+{
+    width: 23.4%;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: bold;
+    color: white;
+    background-color: #5e548e;
+}
+
+.todo ul li
+{
+    border: 2px solid #5e548e;
+    list-style-type: none;
+    width: 23%;
+    text-align: center;
+    padding: 10px;
+    margin-top: 4px;
+    background-color: #9f86c0;
+}
+.todo ul  
+{
+    text-align: center;
+    position: relative;
+    left: 670px;
+}

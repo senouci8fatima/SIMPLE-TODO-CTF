@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Luffy's Todo List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body class="todo">
+    <div class="wlcm">{{ welcome_message | safe }}</div>
+    <h2>Add a Todo</h2>
+    <form method="POST">
+        <input name="title" placeholder="Title"><br>
+        <textarea name="description" placeholder="Description"></textarea><br>
+        <button type="submit">Add</button>
+    </form>
+
+    <h3>Your Todos:</h3>
+    <ul>
+        {% for todo in todos %}
+            <li><strong>{{ todo.title }}</strong> - {{ todo.description }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="/logout">Logout</a>
+</body>
+</html>
